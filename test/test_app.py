@@ -29,7 +29,7 @@ class APITestCase(unittest.TestCase):
         self.assertEqual(json_response['data']['rawSentence'],
                          'This sentences tis ha&rd to <> [] () pa~rse!')
         self.assertEqual(json_response['data']['cleanSentence'],
-                        'This sentences tis hard to    parse')
+                        'This sentences tis ha rd to    parse')
 
         parsedSentence = [
             "This",
