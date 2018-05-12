@@ -48,9 +48,7 @@ jobs:
           name: run tests
           command: |
             . venv/bin/activate
-            flask test --coverage
-          environment:
-            FLASK_APP: flask_manage.py
+            pytest
 
       - store_artifacts:
           path: test-reports
