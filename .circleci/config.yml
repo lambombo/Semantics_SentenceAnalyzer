@@ -51,7 +51,7 @@ jobs:
             mkdir test-reports
             pytest --junitxml=test-reports/junit.xml
           post:
-            coveralls
+            coveralls 
 
       - store_test_results:
           path: test-reports
