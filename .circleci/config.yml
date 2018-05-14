@@ -85,10 +85,10 @@ jobs:
       - run:
           command: |
             docker run -d \
-                       -p 12345:22 --name $TARGET-test \
+                       -p 80:5000 --name $TARGET-test \
                        $IMAGE_REPO:$(cat _tag)
             sleep 20
-      - run: curl -o localhost
+      - run: curl localhost
 
       - run: docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
 
