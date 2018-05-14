@@ -77,8 +77,8 @@ jobs:
             $NO_CACHE \
             --build-arg IMAGE_TAG=$(cat _tag) \
             -t $IMAGE_REPO:$(cat _tag) \
-            -f targets/$TARGET/Dockerfile \
             .
+            
       - run: docker rm --force $TARGET-test || true
 
       - run:
