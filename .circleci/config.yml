@@ -122,12 +122,9 @@ jobs:
 
 workflows:
   version: 2
-  build-test-and-push:
+  build/test-and-push:
     jobs:
       - build
-      - test:
-          requires:
-            - build
       - push:
           requires:
-            - test
+            - build
