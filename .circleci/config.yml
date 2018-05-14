@@ -62,6 +62,7 @@ jobs:
   push:
     machine:
       docker_layer_caching: true
+      enabled: true
     working_directory: ~/repo
     environment:
       IMAGE_REPO: lambombo/semantics_sentenceanalyzer
@@ -78,7 +79,7 @@ jobs:
             --build-arg IMAGE_TAG=$(cat _tag) \
             -t $IMAGE_REPO:$(cat _tag) \
             .
-            
+
       - run: docker rm --force $TARGET-test || true
 
       - run:
