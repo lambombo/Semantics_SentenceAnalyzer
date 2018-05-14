@@ -6,4 +6,5 @@ COPY flask_manage.py config.py boot.sh requirements.txt ./
 RUN pip install -r ./requirements.txt
 
 EXPOSE 5000
-ENTRYPOINT ["./boot.sh"]
+RUN chmod +x ./boot.sh
+CMD sh ./boot.sh
