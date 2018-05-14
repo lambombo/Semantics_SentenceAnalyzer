@@ -62,7 +62,7 @@ jobs:
   push:
     machine:
       docker_layer_caching: true
-    working_directory: /home/circleci/image-builder
+    working_directory: ~/repo
     environment:
       IMAGE_REPO: lambombo/semantics_sentenceanalyzer
       TARGET: ubuntu-14.04-XXL
@@ -83,7 +83,7 @@ jobs:
 
       - run:
           command: |
-            docker run -d -v /home/circleci/image-builder/tests:/home/ubuntu/tests \
+            docker run -d \
                        -p 12345:22 --name $TARGET-test \
                        $IMAGE_REPO:$(cat _tag)
             sleep 20
