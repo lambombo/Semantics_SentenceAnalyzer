@@ -70,7 +70,7 @@ jobs:
       _TARGET: ubuntu-14_04-XXL
     steps:
       - checkout
-      - run: echo -n "$CIRCLE_BUILD_NUM-$(git rev-parse --short HEAD)" > _tag
+      - run: echo -n "$(git rev-parse --short HEAD)" > _tag
       - run: echo "Building $IMAGE_REPO:$(cat _tag)"
       - run:
           command: |
