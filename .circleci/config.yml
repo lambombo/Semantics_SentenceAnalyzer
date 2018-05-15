@@ -70,7 +70,7 @@ jobs:
       _TARGET: ubuntu-14_04-XXL
     steps:
       - checkout
-      - run: echo -n "$TARGET-$CIRCLE_BUILD_NUM-$(git rev-parse --short HEAD)" > _tag
+      - run: echo -n "$CIRCLE_BUILD_NUM-$(git rev-parse --short HEAD)" > _tag
       - run: echo "Building $IMAGE_REPO:$(cat _tag)"
       - run:
           command: |
@@ -101,11 +101,13 @@ jobs:
              echo "Retrying...."
            done
            exit 1
-      - run: docker run $IMAGE_REPO:$(cat _tag) sudo -H -i -u ubuntu /opt/circleci/bin/pkg-versions.sh | jq . > versions-$_TARGET.json
-
-      - run: curl versions.json.before https://circleci.com/docs/environments/$TARGET.json
-
-      - run: diff -uw versions.json.before versions-$_TARGET.json > versions-$_TARGET.diff || true
+      - run:
+          command: |
+            docker run -d \
+                       -p 81:5000 --name $TARGET-test \
+                       $DOCKER_USER/$IMAGE_REPO:$(cat _tag)
+            sleep 20
+      - run: curl localhost:81
 
       - store_artifacts:
           path: versions-ubuntu-14_04-XXL.diff
