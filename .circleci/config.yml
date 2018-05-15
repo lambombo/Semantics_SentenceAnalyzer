@@ -90,6 +90,8 @@ jobs:
             sleep 20
       - run: curl localhost
 
+      - run: docker rm --force $TARGET-test || true
+
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
 
       - run: |
