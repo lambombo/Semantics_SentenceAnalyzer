@@ -105,7 +105,7 @@ jobs:
           command: |
             docker run -d \
                        -p 81:5000 --name $TARGET-test \
-                       $DOCKER_USER/$IMAGE_REPO:$(cat _tag)
+                       $IMAGE_REPO:$(cat _tag)
             sleep 20
       - run: curl localhost:81
 
