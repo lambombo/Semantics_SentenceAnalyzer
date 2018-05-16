@@ -118,7 +118,7 @@ jobs:
             fi
       - run: 
           command:
-            if [ $CIRCLE_BRANCH = 'master']; then
+            if [ $CIRCLE_BRANCH = 'master' ]; then
               curl localhost:81
             fi
 
