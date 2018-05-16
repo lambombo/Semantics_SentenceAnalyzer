@@ -112,14 +112,14 @@ jobs:
           command: |
             if [ $CIRCLE_BRANCH = ‘master’ ]; then            
               docker run -d \
-                        -p 81:5000 --name $TARGET-test \
+                        -p 80:5000 --name $TARGET-test \
                         $IMAGE_REPO:$(cat _tag)
               sleep 20
             fi
       - run: 
           command:
             if [ $CIRCLE_BRANCH = 'master' ]; then
-              curl localhost:81
+              curl localhost
             fi
 
 workflows:
