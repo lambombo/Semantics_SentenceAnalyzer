@@ -247,9 +247,3 @@ workflows:
           context: dockerhub
           requires:
             - build
-    jobs:
-      - build
-      - push:
-          context: dockerhub
-          requires:
-            - build
