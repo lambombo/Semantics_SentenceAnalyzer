@@ -117,7 +117,7 @@ jobs:
               sleep 20
             fi
       - run: 
-          command:
+          command: |
             if [ $CIRCLE_BRANCH = 'master' ]; then
               curl localhost
             fi
