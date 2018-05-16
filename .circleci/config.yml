@@ -106,6 +106,7 @@ jobs:
             done
             exit 1
           fi
+          
       - run:
           command: |
             if [ $CIRCLE_BRANCH = ‘master’ ]; then            
