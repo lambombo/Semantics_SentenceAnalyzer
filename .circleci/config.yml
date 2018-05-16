@@ -88,6 +88,7 @@ jobs:
                        -p 80:5000 --name $TARGET-test \
                        $IMAGE_REPO:$(cat _tag)
             sleep 20
+            
       - run: curl localhost
 
       - run: docker rm --force $TARGET-test || true
