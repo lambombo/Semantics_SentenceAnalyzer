@@ -94,17 +94,18 @@ jobs:
 
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
 
-      - run: |
-      if [ $CIRCLE_BRANCH = ‘master’ ]; then
-        for i in 1 2 3; do
-          docker push $IMAGE_REPO:$(cat _tag)
-          if [ $? -eq 0 ]; then
-            exit 0
+      - run: 
+        command: |
+          if [ $CIRCLE_BRANCH = ‘master’ ]; then
+            for i in 1 2 3; do
+              docker push $IMAGE_REPO:$(cat _tag)
+              if [ $? -eq 0 ]; then
+                exit 0
+              fi
+              echo "Retrying...."
+            done
+            exit 1
           fi
-          echo "Retrying...."
-        done
-        exit 1
-      fi
       - run:
           command: |
             if [ $CIRCLE_BRANCH = ‘master’ ]; then            
@@ -113,10 +114,11 @@ jobs:
                         $IMAGE_REPO:$(cat _tag)
               sleep 20
             fi
-      - run: |
-        if [ $CIRCLE_BRANCH = 'master'; then
-          curl localhost:81
-        fi
+      - run: 
+        command:
+          if [ $CIRCLE_BRANCH = 'master'; then
+            curl localhost:81
+          fi
 
 workflows:
   version: 2
