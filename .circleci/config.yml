@@ -98,7 +98,7 @@ jobs:
 
       - run: 
           command: |
-            if [ $CIRCLE_BRANCH = ‘master’ ]; then
+            if [ $CIRCLE_BRANCH = "master" ]; then
               for i in 1 2 3; do
                 docker push $IMAGE_REPO:$(cat _tag)
                 if [ $? -eq 0 ]; then
@@ -111,11 +111,15 @@ jobs:
 
       - run:
           command: |
-            if [ $CIRCLE_BRANCH = ‘master’ ]; then            
+            if [ $CIRCLE_BRANCH = "master" ]; then            
               docker run -d \
                         -p 80:5000 --name $TARGET-test \
                         $IMAGE_REPO:$(cat _tag)
               sleep 20
+            fi
+      - run:
+          command: |
+            if [ $CIRCLE_BRANCH = "master" ]; then
               curl localhost
             fi
 
